@@ -75,7 +75,3 @@ lerna では ./packages 以下がモノレポ管理される NodeJS パッケー
 3. API の結果から画面を構成、表示する
 4. 自動更新オプションが有効な場合、15 分毎に 2、3 を繰り返す
 
-### 現物
-
-あくまで自分しか使わないような想定のものなので色々中途半端ではありますがご容赦ください…
-https://vtuber-scheduler.herokuapp.com/timeline
