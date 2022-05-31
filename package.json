@@ -1,0 +1,19 @@
+{
+  "name": "vische",
+  "private": true,
+  "scripts": {
+    "build": "npx lerna run build",
+    "start": "node packages/vische-server/dist/main.js",
+    "start:dev:server": "npx nest start --watch",
+    "postinstall": "npx lerna bootstrap"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build"
+    }
+  },
+  "devDependencies": {
+    "husky": "^4.3.6",
+    "lerna": "^3.22.1"
+  }
+}

@@ -1,0 +1,38 @@
+<p-splitter
+  [style]="{ height: '95vh', width: '100%' }"
+  layout="vertical"
+  [panelSizes]="[5, 95]"
+>
+  <ng-template pTemplate>
+    <p-splitter [panelSizes]="[70, 30]" [style]="{ width: '100%' }">
+      <ng-template pTemplate>
+        <p-menubar
+          [baseZIndex]="10"
+          [model]="items"
+          [style]="{ height: '100%', width: '100%' }"
+        ></p-menubar>
+      </ng-template>
+      <ng-template pTemplate>
+        <div class="centering-box" [style]="{ width: '100%' }">
+          <button
+            pButton
+            pRipple
+            type="button"
+            [style]="{ width: '100%' }"
+            class="p-button-raised p-button-text centering"
+            pTooltip="現在時刻の予定へジャンプ"
+            tooltipPosition="bottom"
+            (click)="pageJump()"
+          >
+            {{ datetime }}
+          </button>
+        </div>
+      </ng-template>
+    </p-splitter>
+  </ng-template>
+  <ng-template pTemplate>
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+</p-splitter>

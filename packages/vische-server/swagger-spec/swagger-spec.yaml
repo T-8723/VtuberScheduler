@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: VischeAPI
+  description: ''
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    PostChannelListRequest:
+      type: object
+      properties:
+        active_only:
+          type: boolean
+          default: true
+        channel_id:
+          default: []
+          type: array
+          items:
+            type: string
+        group_id:
+          default: []
+          type: array
+          items:
+            type: string
+        sub_group_id:
+          default: []
+          type: array
+          items:
+            type: string
+      required:
+        - active_only
+        - channel_id
+        - group_id
+        - sub_group_id
+    Channel:
+      type: object
+      properties:
+        channel_id:
+          type: string
+        channel_title:
+          type: string
+        enable:
+          type: boolean
+        name:
+          type: string
+        published_date:
+          type: string
+        icon_url:
+          type: string
+        country:
+          type: string
+        group_id:
+          type: string
+        sub_group_id:
+          type: string
+        twitterId:
+          type: string
+        stream_hash_tag:
+          type: array
+          items:
+            type: string
+        color:
+          type: string
+      required:
+        - channel_id
+        - channel_title
+        - enable
+        - name
+        - published_date
+        - icon_url
+        - country
+        - group_id
+        - sub_group_id
+        - twitterId
+        - stream_hash_tag
+        - color
+    PostChannelListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Channel'
+      required:
+        - status
+        - message
+        - data
+    Member:
+      type: object
+      properties:
+        name:
+          type: string
+        icon:
+          type: string
+        color:
+          type: string
+        channel_id:
+          type: string
+      required:
+        - name
+        - icon
+        - color
+        - channel_id
+    Streaming:
+      type: object
+      properties:
+        datetime:
+          format: date-time
+          type: string
+        url:
+          type: string
+        thumbnail:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        now:
+          type: boolean
+      required:
+        - datetime
+        - url
+        - thumbnail
+        - title
+        - description
+        - now
+    LiveData:
+      type: object
+      properties:
+        member:
+          $ref: '#/components/schemas/Member'
+        streaming:
+          $ref: '#/components/schemas/Streaming'
+        update_date:
+          format: date-time
+          type: string
+      required:
+        - member
+        - streaming
+        - update_date
+    ResponseSchedule:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/LiveData'
+      required:
+        - list
+paths:
+  /api:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/channel/list:
+    post:
+      operationId: ChannelsController_getChannels
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostChannelListRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostChannelListResponse'
+  /api/channel/regist:
+    post:
+      operationId: ChannelsController_registChannel
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  /api/channel/delete:
+    delete:
+      operationId: ChannelsController_deleteChannels
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/group/list:
+    post:
+      operationId: GroupsController_getGroups
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  /api/group/regist:
+    post:
+      operationId: GroupsController_registGroup
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  /api/group/delete:
+    delete:
+      operationId: GroupsController_deleteGroups
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/schedule/hololivelist:
+    get:
+      operationId: ScheduleController_getHololivelist
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSchedule'
+  /api/schedule/nijisanjilist:
+    get:
+      operationId: ScheduleController_getNijisanjilist
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSchedule'
+  /api/schedule/personallist:
+    get:
+      operationId: ScheduleController_getPersonallist
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSchedule'

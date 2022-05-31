@@ -1,0 +1,241 @@
+<p-blockUI [blocked]="blocked" [baseZIndex]="1000"
+  ><p-progressSpinner></p-progressSpinner
+></p-blockUI>
+<p-scrollPanel
+  #scrollPanel
+  [style]="{
+    width: '100%',
+    height: '100%'
+  }"
+  styleClass="custom-scrollPanel"
+>
+  <ng-container *ngFor="let timeline of timelineList; let i = index">
+    <h4
+      class="absolute transition-opacity centering-box"
+      [id]="timeline.timelineDateTime"
+      [style]="{
+        width: width,
+        transform: getTranslateX(i)
+      }"
+      #date
+    >
+      <p
+        class="centering"
+        [ngClass]="timeline.streamingStatus === 1 ? 'now' : ''"
+      >
+        {{ formDateString(timeline.timelineDateTime) }}
+      </p>
+    </h4>
+    <ul
+      class="absolute"
+      [style]="{
+        width: width,
+        transform: getTranslateX(i, 0),
+        'padding-left': '10px'
+      }"
+    >
+      <ng-container
+        *ngFor="let timelineItem of timeline.timelineItemList; let i = index"
+      >
+        <li (click)="op.toggle($event)">
+          <ng-container *ngIf="timelineItem.streaming.now">
+            <p-badge
+              styleClass="custom-badge"
+              class="absolute"
+              severity="success"
+              [style]="{ 'margin-left': '-5px', 'margin-top': '-3px' }"
+            ></p-badge
+          ></ng-container>
+          <p-chip
+            [label]="timelineItem.member.name"
+            [image]="timelineItem.member.icon"
+            [style]="{
+              cursor: 'pointer',
+              width: width_num - 25 + width_unit,
+              background: colorConvert(timelineItem.member.color, 0.4),
+              border: '1px solid ' + colorConvert(timelineItem.member.color, 1),
+              '-webkit-text-stroke':
+                '0.15px ' + colorConvert(timelineItem.member.color, 1)
+            }"
+            styleClass="custom-chip"
+          ></p-chip>
+
+          <p-overlayPanel
+            styleClass="custom-overlay"
+            #op
+            [style]="{
+              width: width_num + width_unit,
+              background: colorConvert(timelineItem.member.color, 0.8),
+              border: '1px solid ' + colorConvert(timelineItem.member.color, 1),
+              '-webkit-text-stroke':
+                '0.15px ' + colorConvert(timelineItem.member.color, 1)
+            }"
+          >
+            <ng-template pTemplate>
+              <p
+                class="absolute"
+                [style]="{
+                  'margin-left': '-7px',
+                  'margin-top': '-22px',
+                  '-webkit-text-stroke':
+                    '0.15px ' + colorConvert(timelineItem.member.color, 1)
+                }"
+              >
+                {{ formDateString(timelineItem.streaming.datetime) }} ~
+              </p>
+              <a
+                class="centering-box"
+                [href]="timelineItem.streaming.url"
+                target="blank"
+                rel="noopener noreferrer"
+              >
+                <p-image
+                  [src]="timelineItem.streaming.thumbnail"
+                  alt="Image"
+                  width="240px"
+                  height="135px"
+                  class="centering"
+                >
+                  <ng-template pTemplate="indicator">
+                    Indicator Content
+                  </ng-template>
+                </p-image>
+              </a>
+            </ng-template>
+          </p-overlayPanel>
+        </li>
+      </ng-container>
+    </ul>
+  </ng-container>
+</p-scrollPanel>
+
+<p-dialog
+  #dialog
+  position="bottom"
+  styleClass="custom-dialog"
+  [closable]="false"
+  [(visible)]="display"
+>
+  <ng-template pTemplate="header">
+    <div
+      class="centering-box"
+      [style]="{
+        'margin-left': 'auto'
+      }"
+    >
+      <p
+        class="centering"
+        [style]="{
+          'margin-right': '5px'
+        }"
+      >
+        配信中 ( {{ nowOnAirList.length }} 件 )
+      </p>
+      <button
+        [style]="{
+          'margin-right': '5px'
+        }"
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-window-minimize"
+        class="p-dialog-header-icon p-dialog-header-close p-link centering-all"
+        (click)="minimize()"
+      ></button>
+    </div>
+  </ng-template>
+  <p-carousel
+    [value]="nowOnAirList"
+    [responsiveOptions]="responsiveOptions"
+    [numVisible]="3"
+    [numScroll]="1"
+    [autoplayInterval]="5000"
+    [circular]="true"
+    [style]="{ 'max-width': '90vw' }"
+    styleClass="custom-carousel"
+  >
+    <ng-template let-liveData pTemplate="item">
+      <div class="centering-box">
+        <p-card
+          class="centering"
+          [style]="{
+            width: '280px',
+            height: '230px',
+            background: colorConvert(liveData.member.color, 0.3),
+            border: '1px solid ' + colorConvert(liveData.member.color, 1)
+          }"
+          styleClass="p-card-shadow"
+        >
+          <ng-template pTemplate="header">
+            <a
+              class="centering-box"
+              [href]="liveData.streaming.url"
+              target="_blank"
+              [style]="{
+                'margin-top': '15px'
+              }"
+            >
+              <p-image
+                [src]="liveData.streaming.thumbnail"
+                alt="Image"
+                width="240px"
+                height="135px"
+                class="centering"
+                [style]="{
+                  'aspect-ratio': '16 / 9'
+                }"
+              >
+              </p-image>
+            </a>
+          </ng-template>
+
+          <div class="centering-box">
+            <p-chip
+              class="centering"
+              [label]="liveData.member.name"
+              [image]="liveData.member.icon"
+              [style]="{
+                cursor: 'pointer',
+                width: '230px',
+                'margin-left': '-12px',
+                'margin-top': '-23px',
+                background: colorConvert(liveData.member.color, 0.4),
+                border: '1px solid ' + colorConvert(liveData.member.color, 1),
+                '-webkit-text-stroke':
+                  '0.15px ' + colorConvert(liveData.member.color, 1)
+              }"
+              styleClass="custom-chip"
+            ></p-chip>
+          </div>
+          <ng-template pTemplate="footer"> </ng-template>
+        </p-card>
+      </div>
+    </ng-template>
+  </p-carousel>
+</p-dialog>
+
+<p-dialog
+  #dialogMini
+  position="bottom-right"
+  styleClass="custom-dialog"
+  [closable]="false"
+  [(visible)]="displayMini"
+  [style]="{ width: '200px', cursor: 'pointer' }"
+>
+  <ng-template pTemplate="header">
+    <button
+      pButton
+      pRipple
+      type="button"
+      [style]="{ width: '100%' }"
+      class="p-button-raised p-button-text centering"
+      pTooltip="配信中一覧を表示"
+      tooltipPosition="top"
+      (click)="maximize()"
+    >
+      配信中 ( {{ nowOnAirList.length }} 件 )
+    </button>
+  </ng-template>
+</p-dialog>
+
+<p-toast></p-toast>

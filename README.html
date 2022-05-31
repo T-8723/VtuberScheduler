@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="vtuber-%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E7%A2%BA%E8%AA%8D%E3%82%A2%E3%83%97%E3%83%AA">Vtuber スケジュール確認アプリ</h1>
+<h2 id="%E6%A6%82%E8%A6%81">概要</h2>
+<p>Vtuber（VirtualYoutuber）の Youtube における配信予定を把握できるアプリケーションです。<br>
+2016 年、キズナアイから始まりその数を増やしている Vtuber ですが、その数故に広く追っていこうとすると生配信のスケジュールの把握が難しくなってきました。<br>
+そこで、スケジュールを自動で取得して把握できるようにまとめるアプリケーションが欲しいなと思い、作成に着手した次第です。</p>
+<p>ちなみにプロジェクト名は <strong>Vi</strong>rtualYoutuber<strong>Sche</strong>duler から取って Vische としました。安直…</p>
+<p>いわゆる大手事務所の Vtuber はそれぞれ個別にスケジューラアプリを置いてるのがほとんどなので、そちらについては公開されている API を使用して都度取得し、その他個人運営については YoutubeDataAPI を使用して定期的に集計するような定期巡回のタスクを走らせる、というのが大まかな構成です。</p>
+<h2 id="%E6%A7%8B%E6%88%90%E3%81%AA%E3%81%A9">構成など</h2>
+<h3 id="%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9">インフラ</h3>
+<p>定期実行のタスクがあり常時起動が望ましいため、 <a href="https://vercel.com">Vercel</a> の様なフロントサイド向けホスティングサービスではなく <a href="https://jp.heroku.com">Heroku</a> を使用することとしました。</p>
+<p>Heroku は公式サポート言語もそこそこありますが、Docker イメージも使用できるため Linux で動くものなら基本的になんでも使用可能です。<br>
+また、1 プロジェクトまでなら無料で使用できるというのも強みです。<br>
+ただ無料プロジェクトは常時起動はできず、30 分に 1 アクセスもなければアイドル状態となります。（リクエストで自動復帰します。）<br>
+こちらについてはあくまで個人利用なので力業、すなわち 24 時間ほぼ付けっ放しの自端末から定期的にアクセスし続けるという方法で解決（？）しました。きちんとカード登録など済ませれば無料のままでももっと制約が軽くなるようなのですが、<s>面倒なので</s>後回しで…</p>
+<p>また、DB は <a href="https://www.mongodb.com/ja-jp/atlas/database">MongoDB Atlas</a> を連携させました。<br>
+こちらも無料枠があるので、全体として費用 0 （※電気代除く）で構成出来ました。</p>
+<h3 id="%E8%A8%80%E8%AA%9E">言語</h3>
+<p>前述の通り docker イメージが用意できればなんでも良いのですが、使い慣れた NodeJS（TypeScript）を使用するなら、 <a href="https://github.com/lerna/lerna">lerna</a> を用いた Anguler + NestJS のモノレポパッケージとして作成すればより簡素に収まると思い立ち、そのように構成しました。</p>
+<h3 id="%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E6%A7%8B%E6%88%90">パッケージ構成</h3>
+<h4 id="%E5%85%A8%E4%BD%93">全体</h4>
+<p>lerna では ./packages 以下がモノレポ管理される NodeJS パッケージ群の格納先となっており、フロントサイドのパッケージ（vische-front-web）と、サーバーサイドのパッケージ（vische-server）をそれぞれ格納しています。<br>
+将来的には他フロントサイドフレームワークや各デバイス向けのアプリケーション用パッケージを増やして管理することも可能です。</p>
+<h4 id="vische-front-web">vische-front-web</h4>
+<p>フロントサイドのパッケージです。Angular13 にて作成しています。</p>
+<ul>
+<li>src\app\views : 画面レイアウト用のフォルダ群
+<ul>
+<li>\timeline : スケジュールを表情するタイムラインコンポーネント</li>
+</ul>
+</li>
+<li>src\app\app.component.ts : メインコンポーネント</li>
+<li>src\app\commons
+<ul>
+<li>\services : API 呼び出しなど外部サービス呼び出し用
+<ul>
+<li>\api : OpenAPI 定義ファイルから自動生成される API 呼び出し用ファイル群</li>
+</ul>
+</li>
+<li>\types : パッケージ内で使用する型定義</li>
+</ul>
+</li>
+</ul>
+<h4 id="vische-server">vische-server</h4>
+<p>サーバーサイドのパッケージです。NestJS v7.5 で作成しています。</p>
+<ul>
+<li>src\interfaces : パッケージ内で使用する型定義</li>
+<li>src\modules : 各機能を収納するフォルダ群
+<ul>
+<li>\channel : 追跡対象として DB に登録されたチャンネルに関わる機能</li>
+<li>\feed : 大手事務所を除く個人チャンネルの定期巡回用の機能群</li>
+<li>\group : 企業などのグループ単位でまとまっているチャンネルに向けての機能</li>
+<li>\schedule : タイムラインを構成する操作全般</li>
+</ul>
+</li>
+<li>src\shared : パッケージ内で使用する共通部品群</li>
+<li>src\app.service.ts : サーバー用のメイン機能</li>
+</ul>
+<h3 id="%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">全体の流れ</h3>
+<h4 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E7%9B%A3%E8%A6%96">チャンネル監視</h4>
+<ol>
+<li>NestJS の cron モジュールで 5 分毎に YoutubeFeed サーバーから feed 情報を取得し保存する</li>
+<li>10 分毎に DB から feed 情報を取得し配信予定の生放送 ID（videoId）を YoutubeDataAPI へ送信する</li>
+<li>結果から配信予定・配信中・配信終了を判断し、状態を feed 情報に上書きする</li>
+</ol>
+<h4 id="%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E8%A1%A8%E7%A4%BA">タイムライン表示</h4>
+<ol>
+<li>タイムライン画面にアクセス</li>
+<li>大手事務所用 API（ホロライブ・にじさんじ）と個人用 API へタイムライン表示用の情報をリクエスト</li>
+<li>API の結果から画面を構成、表示する</li>
+<li>自動更新オプションが有効な場合、15 分毎に 2、3 を繰り返す</li>
+</ol>
+<h3 id="%E7%8F%BE%E7%89%A9">現物</h3>
+<p>あくまで自分しか使わないような想定のものなので色々中途半端ではありますがご容赦ください…
+https://vtuber-scheduler.herokuapp.com/timeline</p>
+
+</body>
+</html>

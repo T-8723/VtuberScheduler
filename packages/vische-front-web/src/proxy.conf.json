@@ -1,0 +1,8 @@
+{
+  "/local/": {
+    "target": "https://vtuber-scheduler.herokuapp.com",
+    "pathRewrite": { "^/local": "" },
+    "secure": false,
+    "changeOrigin": true
+  }
+}

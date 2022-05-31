@@ -1,0 +1,25 @@
+body {
+  background-color: var(--surface-a);
+}
+
+.custom-overlay.p-overlaypanel::after {
+  display: none;
+}
+.custom-overlay.p-overlaypanel::before {
+  display: none;
+}
+
+.centering-box {
+  display: flex;
+  .centering {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .centering-all {
+    margin: auto;
+  }
+}
+
+a {
+  cursor: pointer;
+}

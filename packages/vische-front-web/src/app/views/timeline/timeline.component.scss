@@ -1,0 +1,48 @@
+:host ::ng-deep .p-chip.custom-chip {
+  background: var(--primary-color);
+  color: 0.15px var(--text-color);
+}
+
+:host ::ng-deep .p-scrollpanel-wrapper {
+  z-index: 0;
+}
+:host ::ng-deep .p-scrollpanel-content {
+  padding: 0 18px 18px 18px;
+}
+:host ::ng-deep .custom-dialog.p-dialog {
+  .p-dialog-header {
+    padding: 0;
+  }
+  .p-dialog-content {
+    padding: 0 1.5rem 0 1.5rem;
+  }
+}
+
+:host ::ng-deep .custom-carousel.p-carousel {
+  .p-carousel-header {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+  }
+}
+
+:host ::ng-deep .custom-badge.p-badge {
+  min-width: 0.5rem;
+  height: 1rem;
+  line-height: 0.5rem;
+}
+
+.now {
+  color: var(--primary-color);
+}
+h4 {
+  height: 100%;
+  margin: 0;
+  overflow-y: hidden;
+  border-right: var(--surface-400) solid 1px;
+}
+
+ul {
+  margin-top: 50px;
+  list-style-type: none;
+}
